@@ -28,10 +28,11 @@
 
       function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
-        if(auth2.isSignedIn()){
+        var user = auth2.currentUser.get();
+        if(user.isSignedIn()){
           console.log('User is signed in.');
           
-          auth2.getBasicProfile();
+          var profile = user.getBasicProfile();
           console.log("ID: " + profile.getId()); // Don't send this directly to your server!
           console.log('Full Name: ' + profile.getName());
           console.log('Given Name: ' + profile.getGivenName());
